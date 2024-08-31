@@ -1,5 +1,4 @@
-[project URL] 
-https://roadmap.sh/projects/number-guessing-game
+[roadmap.sh](https://roadmap.sh/projects/number-guessing-game)
 
 How to Run the code
 1) Get this code on your computer
