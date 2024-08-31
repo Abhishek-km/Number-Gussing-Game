@@ -1,4 +1,4 @@
-[Project Page] 
+[project URL] 
 https://roadmap.sh/projects/number-guessing-game
 
 How to Run the code
