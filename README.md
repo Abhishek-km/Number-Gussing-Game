@@ -1,5 +1,4 @@
-[roadmap.sh](https://roadmap.sh/projects/number-guessing-game)
-Description , https://roadmap.sh/projects/number-guessing-game
+From [roadmap.sh](https://roadmap.sh/projects/number-guessing-game)
 How to Run the code
 1) Get this code on your computer
 2) Install Go Compiler 
