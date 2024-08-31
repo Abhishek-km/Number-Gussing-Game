@@ -1,3 +1,4 @@
+Project URL - https://roadmap.sh/projects/number-guessing-game
 Requirements
 It is a CLI-based game, so you need to use the command line to interact with the game. The game should work as follows:
 
@@ -40,9 +41,6 @@ Incorrect! The number is less than 35.
 Enter your guess: 30
 Congratulations! You guessed the correct number in 4 attempts.
 ****************************************************************************************************************************************
-
-Project Page URL - https://roadmap.sh/projects/number-guessing-game
-
 How to Run the code
 
 1) Get this code on your computer
