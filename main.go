@@ -3,7 +3,34 @@ package main
 import (
 	"fmt"
 	"math/rand"
+	"errors"
 )
+
+func startGame(noOfChances int, randomNumber int) (bool,error) {
+	for i := 1; i <= noOfChances; i++ {
+
+		// take the input of the guessed number
+		var gussedNumber int
+		fmt.Println("")
+		fmt.Print("\nEnter your guess:")
+		_, err := fmt.Scan(&gussedNumber)
+		if err != nil {
+			fmt.Println("Error reading the input", err)
+			return false, errors.New("Invalid Input")
+		}
+
+		if gussedNumber > randomNumber {
+			fmt.Printf("Incorrect! The number is less than %v", gussedNumber)
+		} else if gussedNumber < randomNumber {
+			fmt.Printf("Incorrect! The number is greater than %v", gussedNumber)
+		} else {
+			fmt.Printf("Congratulations! You guessed the correct number in %v attempts.", i)
+			fmt.Println()
+			return true,nil
+		}
+	}
+	return false,nil
+}
 
 func main() {
 
@@ -13,7 +40,6 @@ func main() {
 	fmt.Println("You have 5 chances to guess the correct number.")
 
 	randomNumber := rand.Intn(100) + 1
-	fmt.Println(randomNumber)
 
 	// Print the levels of the game
 	fmt.Println("")
@@ -54,26 +80,28 @@ func main() {
 	fmt.Printf("\nGreat! You have selected the %s difficulty level.", difficultyLevelString)
 	fmt.Printf("\nLet's start the game!")
 
-	for i := 1; i <= noOfChances; i++ {
-
-		// take the input of the guessed number
-		var gussedNumber int
-		fmt.Println("")
-		fmt.Print("\nEnter your guess:")
-		_, err := fmt.Scan(&gussedNumber)
-		if err != nil {
-			fmt.Println("Error reading the input", err)
-			return
-		}
-
-		if gussedNumber > randomNumber {
-			fmt.Printf("Incorrect! The number is less than %v", gussedNumber)
-		} else if gussedNumber < randomNumber {
-			fmt.Printf("Incorrect! The number is greater than %v", gussedNumber)
-		} else {
-			fmt.Printf("Congratulations! You guessed the correct number in %v attempts.", i)
-			fmt.Println()
-			return
+	for {
+		result, error := startGame(noOfChances, randomNumber)
+		if result {
+			break
+		} else if(error == nil) {
+			fmt.Printf("\nDo you want to still continue playing?(y/n) ")
+			var answer string
+			_, err := fmt.Scan(&answer)
+			if err != nil {
+				fmt.Printf("\nError reading the input", err)
+				break
+			}
+			if answer == "y" {
+				continue
+			} else if answer == "n" {
+				break
+			} else {
+				fmt.Printf("\nError reading the input,")
+				break
+			}
+		} else{
+			break
 		}
 	}
 }

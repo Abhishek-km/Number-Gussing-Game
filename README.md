@@ -23,3 +23,8 @@ If you don't have go setup in your machine
 # Challenge roadmap
 
 - https://roadmap.sh/projects/number-guessing-game
+
+****************************************************************************************************************************************
+To make the game more interesting, you can add the following features:
+
+Allow the user to play multiple rounds of the game (i.e., keep playing until the user decides to quit). You can do this by asking the user if they want to play again after each round. (done)
