@@ -1,12 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"math/rand"
-	"errors"
 )
 
-func startGame(noOfChances int, randomNumber int) (bool,error) {
+func startGame(noOfChances int, randomNumber int, chances int) (bool, error) {
 	for i := 1; i <= noOfChances; i++ {
 
 		// take the input of the guessed number
@@ -24,12 +24,12 @@ func startGame(noOfChances int, randomNumber int) (bool,error) {
 		} else if gussedNumber < randomNumber {
 			fmt.Printf("Incorrect! The number is greater than %v", gussedNumber)
 		} else {
-			fmt.Printf("Congratulations! You guessed the correct number in %v attempts.", i)
+			fmt.Printf("Congratulations! You guessed the correct number in %v attempts in %v number of game", i, chances)
 			fmt.Println()
-			return true,nil
+			return true, nil
 		}
 	}
-	return false,nil
+	return false, nil
 }
 
 func main() {
@@ -80,11 +80,15 @@ func main() {
 	fmt.Printf("\nGreat! You have selected the %s difficulty level.", difficultyLevelString)
 	fmt.Printf("\nLet's start the game!")
 
+	var totalCount int = 0
+
 	for {
-		result, error := startGame(noOfChances, randomNumber)
+		totalCount = totalCount + 1
+		result, error := startGame(noOfChances, randomNumber, totalCount)
 		if result {
+			fmt.Printf("\n You played %v number of game", totalCount)
 			break
-		} else if(error == nil) {
+		} else if error == nil {
 			fmt.Printf("\nDo you want to still continue playing?(y/n) ")
 			var answer string
 			_, err := fmt.Scan(&answer)
@@ -95,12 +99,13 @@ func main() {
 			if answer == "y" {
 				continue
 			} else if answer == "n" {
+				fmt.Printf("\n You played %v number of game", totalCount)
 				break
 			} else {
 				fmt.Printf("\nError reading the input,")
 				break
 			}
-		} else{
+		} else {
 			break
 		}
 	}
